@@ -1,0 +1,8 @@
+services:
+  playwrifht:
+    image: ${COMPOSE_PROJECT_NAME}-playwright:latest
+    platform: linux/amd64
+    build:
+      context: ./docker/playwright
+      args:
+        PARENT_IMAGE: ${PLAYWRIFHT_IMAGE}
