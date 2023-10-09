@@ -5,8 +5,11 @@ FROM ${PARENT_IMAGE}
 WORKDIR /usr/app
 COPY . /usr/app
 
+ENV PLAYWRIGHT_BROWSERS_PATH=0
+
 RUN cd /usr/app \ 
     && npm install \
+    && npx playwright install chromium \
     && npm run build
 
 CMD ["npm","run","start"]

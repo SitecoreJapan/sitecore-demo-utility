@@ -12,3 +12,5 @@ services:
       PAGE_WAIT_TIME: ${PAGE_WAIT_TIME}
     ports:
       - "3000:3000"
+    networks:
+      - default
