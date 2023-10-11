@@ -5,7 +5,7 @@ services:
     build:
       context: ./src/playwright
       args:
-        PARENT_IMAGE: ${PLAYWRIFHT_IMAGE}
+        PARENT_IMAGE: ${PLAYWRIGHT_IMAGE}
     environment:
       PAGE_WIDTH: ${PAGE_WIDTH}
       PAGE_HEIGHT: ${PAGE_HEIGHT}

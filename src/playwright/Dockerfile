@@ -5,7 +5,7 @@ FROM ${PARENT_IMAGE}
 WORKDIR /usr/app
 COPY . /usr/app
 
-ENV PLAYWRIGHT_BROWSERS_PATH=0
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 
 RUN cd /usr/app \ 
     && npm install \
