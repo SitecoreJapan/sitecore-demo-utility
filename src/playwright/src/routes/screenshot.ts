@@ -16,9 +16,7 @@ export const screenshot = async (req: Request, res: Response) => {
   console.log(`Processing screenshot for URL: ${urlParam}`);
 
   // Playwrightを使用してスクリーンショットを取得
-  const browser = await chromium.launch({
-    args: [`--env=PLAYWRIGHT_BROWSERS_PATH=0 --no-sandbox`],
-  });
+  const browser = await chromium.launch();
   const page = await browser.newPage();
   await page.setViewportSize({ width: PAGE_WIDTH, height: PAGE_HEIGHT });
   await page.goto(urlParam);
