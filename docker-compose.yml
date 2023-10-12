@@ -1,8 +1,30 @@
 services:
-  playwrifht:
-    image: ${COMPOSE_PROJECT_NAME}-playwright:latest
+  playwright:
+    image: ${COMPOSE_PROJECT_NAME}-playwright:${PROJECT_VERSION}
     platform: linux/amd64
     build:
-      context: ./docker/playwright
+      context: ./src/playwright
       args:
-        PARENT_IMAGE: ${PLAYWRIFHT_IMAGE}
+        PARENT_IMAGE: ${PLAYWRIGHT_IMAGE}
+    environment:
+      PAGE_WIDTH: ${PAGE_WIDTH}
+      PAGE_HEIGHT: ${PAGE_HEIGHT}
+      PAGE_WAIT_TIME: ${PAGE_WAIT_TIME}
+    ports:
+      - "3000:3000"
+    networks:
+      - default
+  functions:
+    image: ${COMPOSE_PROJECT_NAME}-functions:${PROJECT_VERSION}
+    platform: linux/amd64
+    build:
+      context: ./src/functions
+      args:
+        PARENT_IMAGE: ${FUNCTIONS_IMAGE}
+    environment:
+      AzureWebJobsStorage: ${AZURE_WEB_JOBS_STORAGE}
+      FUNCTIONS_WORKER_RUNTIME: node
+    ports:
+      - "80:80"
+    networks:
+      - default

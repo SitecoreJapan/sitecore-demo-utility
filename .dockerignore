@@ -1,0 +1,6 @@
+.gitignore
+.vs
+Dockerfile
+
+**/dist
+**/node_modules
