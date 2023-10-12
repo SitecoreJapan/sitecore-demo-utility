@@ -24,8 +24,12 @@ export const screenshot = async (req: Request, res: Response) => {
 
   const screenshot = await page.screenshot();
   // スクリーンショットをHTTPレスポンスとして送信
-  res.setHeader("Content-Type", "image/png");
-  res.send(screenshot);
+  // res.setHeader("Content-Type", "image/png");
+  // res.send(screenshot);
+
+  // Base64エンコードされたスクリーンショットをHTTPレスポンスとして送信
+  const base64Screenshot = screenshot.toString("base64");
+  res.json({ screenshot: base64Screenshot });
 
   await browser.close();
   console.log("Screenshot taken");
