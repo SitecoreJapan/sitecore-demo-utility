@@ -1,4 +1,6 @@
-FROM node:20-bullseye
+ARG PARENT_IMAGE
+
+FROM ${PARENT_IMAGE} 
 
 WORKDIR /usr/app
 COPY . /usr/app
