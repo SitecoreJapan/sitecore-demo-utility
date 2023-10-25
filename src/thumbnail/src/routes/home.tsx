@@ -8,39 +8,41 @@ import { SearchResults } from "../interfaces/getUrls";
 const Home: React.FC = () => {
   const [text, setText] = useState<string>("");
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
     setText("Execute");
 
-    fetchData(SEARCH_ID, 0, 10)
-      .then(async (totalItems: SearchResults) => {
-        console.log(totalItems);
+    try {
+      const totalItems: SearchResults = await fetchData(SEARCH_ID, 0, 10);
 
-        const paging =
-          Math.floor(totalItems.widgets[0].total_item / ITEM_NUM) + 1;
+      console.log(totalItems);
 
-        for (let i = 0; i < paging; i++) {
-          const contentList: SearchResults = await fetchData(
-            SEARCH_ID,
-            i * ITEM_NUM,
-            ITEM_NUM
-          );
+      const paging =
+        Math.floor(totalItems.widgets[0].total_item / ITEM_NUM) + 1;
 
-          for (let j = 0; j < contentList.widgets[0].limit; j++) {
-            const contentItem = contentList.widgets[0].content[j];
+      for (let i = 0; i < paging; i++) {
+        const contentList: SearchResults = await fetchData(
+          SEARCH_ID,
+          i * ITEM_NUM,
+          ITEM_NUM
+        );
 
-            // ここに画像生成のロジックを追加する
+        for (let j = 0; j < contentList.widgets[0].limit; j++) {
+          const contentItem = contentList.widgets[0].content[j];
 
-            console.log("URL:", contentItem.url);
-          }
-          console.log(`loop ${i + 1} `);
+          // ここに画像生成のロジックを追加する
+
+          console.log("URL:", contentItem.url);
+          setText(contentItem.url);
         }
-      })
-      .catch((error) => {
-        // エラーハンドリングを行う
-        console.error("An error occurred while retrieving data:", error);
-      });
+        console.log(`loop ${i + 1} `);
+      }
+    } catch (error) {
+      // エラーハンドリングを行う
+      console.error("An error occurred while retrieving data:", error);
+    }
 
     console.log(SEARCH_ID);
+    setText("done");
   };
 
   return (
