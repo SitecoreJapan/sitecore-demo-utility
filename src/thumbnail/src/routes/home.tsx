@@ -1,15 +1,37 @@
-// src/routes/Home.tsx
+import axios from "axios";
+
 import React, { useState } from "react";
 import { Button } from "@nextui-org/react";
 import { SEARCH_ID, ITEM_NUM } from "../constants/searchserver";
+import { PLAYWRIGHT_HOST_URI } from "../constants/playwrightserver";
 import { fetchData } from "../util/fetch";
 import { SearchResults } from "../interfaces/getUrls";
 
 const Home: React.FC = () => {
   const [text, setText] = useState<string>("");
+  const [imageData, setImageData] = useState(null);
 
   const handleButtonClick = async () => {
     setText("Execute");
+    console.log(PLAYWRIGHT_HOST_URI);
+
+    const url =
+      PLAYWRIGHT_HOST_URI + "/api/screenshot?url=https://haramizu.com";
+
+    try {
+      const response = await axios.get(url);
+      const imageData = response.data.screenshot;
+      setImageData(imageData);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+
+      // const data = await response.json();
+      console.log(response);
+    } catch (error) {
+      console.error("データの取得中にエラーが発生しました:", error);
+    }
 
     try {
       const totalItems: SearchResults = await fetchData(SEARCH_ID, 0, 10);
@@ -56,6 +78,12 @@ const Home: React.FC = () => {
         </Button>
       </div>
       <div className="flex justify-center items-center">{text}</div>
+      {imageData && (
+        <img
+          src={`data:image/png;base64,${imageData}`} // 画像データを表示
+          alt="Website Screenshot"
+        />
+      )}
     </div>
   );
 };
