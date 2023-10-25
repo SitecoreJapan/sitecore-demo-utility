@@ -1,33 +1,43 @@
 // src/routes/Home.tsx
 import React, { useState } from "react";
 import { Button } from "@nextui-org/react";
-import { SEARCH_ID } from "../constants/searchserver";
+import { SEARCH_ID, ITEM_NUM } from "../constants/searchserver";
 import { fetchData } from "../util/fetch";
 import { SearchResults } from "../interfaces/getUrls";
 
 const Home: React.FC = () => {
-  const [text, setText] = useState<string>(""); // テキストの初期値を空に設定
+  const [text, setText] = useState<string>("");
 
   const handleButtonClick = () => {
-    // ボタンクリック時の処理
-    setText("ボタンがクリックされました");
+    setText("Execute");
 
-    fetchData(SEARCH_ID, 0)
-      .then((data: SearchResults) => {
-        console.log(data);
+    fetchData(SEARCH_ID, 0, 10)
+      .then(async (totalItems: SearchResults) => {
+        console.log(totalItems);
 
-        const total_item = data.widgets[0].total_item;
-        setText(total_item.toString());
-        // 例: 最初のcontentアイテムの名前とURLをログに表示
-        if (data.widgets.length > 0 && data.widgets[0].content.length > 0) {
-          const firstContentItem = data.widgets[0].content[0];
-          console.log("Name:", firstContentItem.name);
-          console.log("URL:", firstContentItem.url);
+        const paging =
+          Math.floor(totalItems.widgets[0].total_item / ITEM_NUM) + 1;
+
+        for (let i = 0; i < paging; i++) {
+          const contentList: SearchResults = await fetchData(
+            SEARCH_ID,
+            i * ITEM_NUM,
+            ITEM_NUM
+          );
+
+          for (let j = 0; j < contentList.widgets[0].limit; j++) {
+            const contentItem = contentList.widgets[0].content[j];
+
+            // ここに画像生成のロジックを追加する
+
+            console.log("URL:", contentItem.url);
+          }
+          console.log(`loop ${i + 1} `);
         }
       })
       .catch((error) => {
         // エラーハンドリングを行う
-        console.error("データの取得中にエラーが発生しました:", error);
+        console.error("An error occurred while retrieving data:", error);
       });
 
     console.log(SEARCH_ID);

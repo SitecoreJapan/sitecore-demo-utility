@@ -30,7 +30,7 @@ export interface SearchResults {
 export const getUrlQuery = (
   sourceId: number,
   offsetNum: number,
-  itemNum: number = 10 // デフォルトの値を10に設定
+  itemNum: number
 ) => {
   return `
 {

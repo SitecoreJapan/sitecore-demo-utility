@@ -3,11 +3,12 @@ import { getUrlQuery, SearchResults } from "../interfaces/getUrls";
 
 export async function fetchData(
   sourceId: number,
-  offsetNum: number
+  offsetNum: number,
+  itemNum: number
 ): Promise<SearchResults> {
   try {
     const url = SEARCH_DISCOVER;
-    const query = getUrlQuery(sourceId, offsetNum);
+    const query = getUrlQuery(sourceId, offsetNum, itemNum);
 
     const response = await fetch(url, {
       method: "POST", // HTTPメソッドは必要に応じて変更
