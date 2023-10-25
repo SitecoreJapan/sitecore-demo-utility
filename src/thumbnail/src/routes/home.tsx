@@ -23,10 +23,6 @@ const Home: React.FC = () => {
       const imageData = response.data.screenshot;
       setImageData(imageData);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-
       // const data = await response.json();
       console.log(response);
     } catch (error) {
