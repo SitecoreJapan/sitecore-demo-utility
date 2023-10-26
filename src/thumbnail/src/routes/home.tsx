@@ -6,6 +6,7 @@ import { SEARCH_ID, ITEM_NUM } from "../constants/searchserver";
 import { PLAYWRIGHT_HOST_URI } from "../constants/playwrightserver";
 import { fetchData } from "../util/fetch";
 import { SearchResults } from "../interfaces/getUrls";
+import upload from "../util/upload";
 
 const Home: React.FC = () => {
   const [text, setText] = useState<string>("");
@@ -48,6 +49,7 @@ const Home: React.FC = () => {
           const contentItem = contentList.widgets[0].content[j];
 
           // ここに画像生成のロジックを追加する
+          upload(contentItem.url);
 
           console.log("URL:", contentItem.url);
           setText(contentItem.url);
