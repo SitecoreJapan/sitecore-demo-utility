@@ -15,21 +15,21 @@ services:
     networks:
       - default
   thumbnail:
-    image: ${COMPOSE_PROJECT_NAME}-thumbnail:${PROJECT_VERSION}
+    image: ${COMPOSE_PROJECT_NAME}-demo-utility:${PROJECT_VERSION}
     platform: linux/amd64
     build:
-      context: ./src/thumbnail
+      context: ./src/demo-utility
       args:
         PARENT_IMAGE: ${NODEJS_PARENT_IMAGE}
     environment:
       AZURE_STORAGE_ACCOUNT: ${AZURE_STORAGE_ACCOUNT}
       AZURE_STORAGE_ACCESS_KEY: ${AZURE_STORAGE_ACCESS_KEY}
       AZURE_STORAGE_CONTAINER: ${AZURE_STORAGE_CONTAINER}
-      VITE_SEARCH_DISCOVER: ${VITE_SEARCH_DISCOVER}
-      VITE_SEARCH_ID: ${VITE_SEARCH_ID}
-      VITE_ITEM_NUM: ${VITE_ITEM_NUM}
-      PLAYWRIGHT_HOST_URI: ${PLAYWRIGHT_HOST_URI}
+      NEXT_SEARCH_DISCOVER: ${NEXT_SEARCH_DISCOVER}
+      NEXT_SEARCH_ID: ${NEXT_SEARCH_ID}
+      NEXT_ITEM_NUM: ${NEXT_ITEM_NUM}
+      NEXT_PLAYWRIGHT_HOST_URI: ${NEXT_PLAYWRIGHT_HOST_URI}
     ports:
-      - "5173:5173"
+      - "3001:3000"
     networks:
       - default

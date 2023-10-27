@@ -7,7 +7,7 @@ export default function Home() {
         <h1>Home</h1>
         <p>Home Page</p>
         <div>
-          Home | <Link href="/thumbnail">thumbnail</Link>
+          <Link href="/">Home</Link> | thumbnail
         </div>
       </div>
     </main>
