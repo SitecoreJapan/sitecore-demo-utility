@@ -14,11 +14,11 @@ services:
       - "3000:3000"
     networks:
       - default
-  thumbnail:
-    image: ${COMPOSE_PROJECT_NAME}-demo-utility:${PROJECT_VERSION}
+  tools:
+    image: ${COMPOSE_PROJECT_NAME}-tools:${PROJECT_VERSION}
     platform: linux/amd64
     build:
-      context: ./src/demo-utility
+      context: ./src/tools
       args:
         PARENT_IMAGE: ${NODEJS_PARENT_IMAGE}
     environment:

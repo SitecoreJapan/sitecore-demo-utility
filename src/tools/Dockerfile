@@ -2,11 +2,11 @@ ARG PARENT_IMAGE
 
 FROM ${PARENT_IMAGE} 
 
-WORKDIR /usr/app
-COPY . /usr/app
+WORKDIR /app
+COPY . /app
 
-RUN cd /usr/app \ 
+RUN cd /app \ 
     && npm install \
     && npm run build
 
-CMD ["npm","run","dev"]
+CMD ["npm","run","start"]
