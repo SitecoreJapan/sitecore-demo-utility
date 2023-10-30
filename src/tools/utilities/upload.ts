@@ -1,4 +1,5 @@
 // import axios from "axios";
+'use client'
 import {
   AZURE_STORAGE_ACCOUNT,
   AZURE_STORAGE_ACCESS_KEY,
