@@ -16,7 +16,6 @@ services:
       - default
   tools:
     image: ${COMPOSE_PROJECT_NAME}-tools:${PROJECT_VERSION}
-    platform: linux/amd64
     build:
       context: ./src/tools
       args:
