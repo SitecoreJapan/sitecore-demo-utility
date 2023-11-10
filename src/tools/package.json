@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@azure/storage-blob": "^12.17.0",
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@sitecore/blok-theme": "^1.1.8",
+    "axios": "^1.6.1",
     "framer-motion": "^10.16.4",
     "next": "14.0.2",
     "react": "^18",
