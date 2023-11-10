@@ -1,11 +1,24 @@
-import "@/styles/globals.css";
+import { ChakraProvider } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
-import { NextUIProvider } from "@nextui-org/react";
+import sitecoreTheme from "@sitecore/blok-theme";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <NextUIProvider>
+    <ChakraProvider
+      theme={sitecoreTheme}
+      toastOptions={{
+        defaultOptions: {
+          position: "bottom-left",
+          variant: "subtle",
+          containerStyle: {
+            mt: "0",
+            mb: "4",
+            mx: "4",
+          },
+        },
+      }}
+    >
       <Component {...pageProps} />
-    </NextUIProvider>
+    </ChakraProvider>
   );
 }

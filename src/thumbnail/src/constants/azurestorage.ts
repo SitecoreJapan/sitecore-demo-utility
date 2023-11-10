@@ -1,4 +1,0 @@
-export const AZURE_STORAGE_ACCOUNT = import.meta.env.AZURE_STORAGE_ACCOUNT;
-export const AZURE_STORAGE_ACCESS_KEY = import.meta.env
-  .AZURE_STORAGE_ACCESS_KEY;
-export const AZURE_STORAGE_CONTAINER = import.meta.env.AZURE_STORAGE_CONTAINER;
