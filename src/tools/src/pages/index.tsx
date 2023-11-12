@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import Hero from "@/components/Hero";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Flex as="main" height="calc(100vh)" background={"chakra-body-bg"}>
+        <Link href="/search">Search</Link>
         <Hero />
         <NextLink href="https://www.sitecore.com">
           <Image
