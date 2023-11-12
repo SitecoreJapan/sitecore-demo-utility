@@ -11,6 +11,7 @@ import {
 import NextLink from "next/link";
 import Hero from "@/components/Hero";
 import Link from "next/link";
+import Layout from "@/PageLayout/PageLayout";
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Flex as="main" height="calc(100vh)" background={"chakra-body-bg"}>
+      <Layout>
         <Link href="/search">Search</Link>
         <Hero />
         <NextLink href="https://www.sitecore.com">
@@ -35,7 +36,7 @@ export default function Home() {
             right={"0"}
           />
         </NextLink>
-      </Flex>
+      </Layout>
     </>
   );
 }

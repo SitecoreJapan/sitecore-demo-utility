@@ -1,9 +1,10 @@
 // pages/index.tsx
 
+import Layout from "@/PageLayout/PageLayout";
 import { Box, Button, ChakraProvider, Input } from "@chakra-ui/react";
 import { useState } from "react";
 
-const Home: React.FC = () => {
+export default function Home() {
   const [inputText, setInputText] = useState<string>(""); // テキストボックスの値を管理するためのstate
   const [displayText, setDisplayText] = useState<string>(""); // 表示するテキストを管理するためのstate
 
@@ -15,19 +16,19 @@ const Home: React.FC = () => {
   };
 
   return (
-    <ChakraProvider>
-      <Box>
-        <Input
-          placeholder="テキストを入力してください"
-          mb={4}
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-        />
-        <Button onClick={handleClick}>クリック</Button>
-        <p>{displayText}</p>
-      </Box>
-    </ChakraProvider>
+    <Layout>
+      <ChakraProvider>
+        <Box>
+          <Input
+            placeholder="テキストを入力してください"
+            mb={4}
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+          />
+          <Button onClick={handleClick}>クリック</Button>
+          <p>{displayText}</p>
+        </Box>
+      </ChakraProvider>
+    </Layout>
   );
-};
-
-export default Home;
+}
