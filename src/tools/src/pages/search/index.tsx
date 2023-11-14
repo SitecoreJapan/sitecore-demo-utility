@@ -1,7 +1,14 @@
 // pages/index.tsx
 
 import Layout from "@/PageLayout/PageLayout";
-import { Box, Button, ChakraProvider, Input } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  ChakraProvider,
+  Container,
+  Flex,
+  Input,
+} from "@chakra-ui/react";
 import { useState } from "react";
 
 export default function Home() {
@@ -17,18 +24,21 @@ export default function Home() {
 
   return (
     <Layout>
-      <ChakraProvider>
-        <Box>
-          <Input
-            placeholder="テキストを入力してください"
-            mb={4}
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-          />
-          <Button onClick={handleClick}>クリック</Button>
-          <p>{displayText}</p>
-        </Box>
-      </ChakraProvider>
+      <Flex w="full" alignItems="center" my="16">
+        <Container>
+          {" "}
+          <Box>
+            <Input
+              placeholder="テキストを入力してください"
+              mb={4}
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+            />
+            <Button onClick={handleClick}>クリック</Button>
+            <p>{displayText}</p>
+          </Box>
+        </Container>
+      </Flex>
     </Layout>
   );
 }

@@ -9,9 +9,10 @@ import {
   useColorMode,
   useColorModeValue,
   HStack,
+  Icon,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { IoLogoGithub } from "react-icons/io";
+import { mdiGithub } from "@mdi/js";
 
 export default function Hero() {
   return (
@@ -43,7 +44,11 @@ export default function Hero() {
             </Button>
             <Button
               as={NextLink}
-              leftIcon={<IoLogoGithub />}
+              leftIcon={
+                <Icon>
+                  <path d={mdiGithub} />
+                </Icon>
+              }
               href="https://github.com/SitecoreJapan/sitecore-demo-utility"
               variant={"outline"}
             >

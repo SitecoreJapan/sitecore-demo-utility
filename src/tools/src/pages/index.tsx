@@ -23,19 +23,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <Link href="/search">Search</Link>
         <Hero />
-        <NextLink href="https://www.sitecore.com">
-          <Image
-            m="8"
-            h="10"
-            src="sitecore.svg"
-            alt="Sitecore logo"
-            position={"absolute"}
-            bottom={"0"}
-            right={"0"}
-          />
-        </NextLink>
       </Layout>
     </>
   );
