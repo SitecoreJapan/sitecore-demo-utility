@@ -8,10 +8,12 @@ import {
   Stack,
   useColorMode,
   useColorModeValue,
+  HStack,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { IoLogoGithub } from "react-icons/io";
 
-const Hero = () => {
+export default function Hero() {
   return (
     <Flex w="full" alignItems="center" my="16">
       <Container>
@@ -35,13 +37,21 @@ const Hero = () => {
             build great apps. It’s publicly available, so that anyone can easily
             build software in the Sitecore design language.
           </Text>
-          <Button as={NextLink} href="https://blok.sitecore.com/get-started">
-            Get started
-          </Button>
+          <HStack>
+            <Button as={NextLink} href="https://blok.sitecore.com/get-started">
+              Get started
+            </Button>
+            <Button
+              as={NextLink}
+              leftIcon={<IoLogoGithub />}
+              href="https://github.com/SitecoreJapan/sitecore-demo-utility"
+              variant={"outline"}
+            >
+              GitHub
+            </Button>
+          </HStack>
         </Stack>
       </Container>
     </Flex>
   );
-};
-
-export default Hero;
+}
