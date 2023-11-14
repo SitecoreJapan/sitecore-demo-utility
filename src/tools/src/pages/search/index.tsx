@@ -26,7 +26,6 @@ export default function Home() {
     <Layout>
       <Flex w="full" alignItems="center" my="16">
         <Container>
-          {" "}
           <Box>
             <Input
               placeholder="テキストを入力してください"

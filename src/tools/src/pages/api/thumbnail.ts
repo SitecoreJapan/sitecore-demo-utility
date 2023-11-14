@@ -81,8 +81,11 @@ export default async function handler(
       const response = await axios.get(externalApiUrl);
       const imageData = response.data.screenshot;
       const decodedImageData = Buffer.from(imageData, "base64");
+      const contentType = "image/png";
 
-      await blockBlobClient.uploadData(decodedImageData);
+      await blockBlobClient.uploadData(decodedImageData, {
+        blobHTTPHeaders: { blobContentType: contentType },
+      });
       console.log("Image was uploaded");
 
       res.setHeader("Content-Type", "image/png");
