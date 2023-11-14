@@ -17,7 +17,6 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { BiSolidMoon } from "react-icons/bi";
 import { mdiChevronDown, mdiChevronUp, mdiCircleHalfFull } from "@mdi/js";
 
 export default function NavBar() {
