@@ -88,15 +88,17 @@ export default async function handler(
       });
       console.log("Image was uploaded");
 
-      res.setHeader("Content-Type", "image/png");
-      res.status(200).end(decodedImageData, "binary");
+      // res.setHeader("Content-Type", "image/png");
+      // res.status(200).end(decodedImageData, "binary");
+      res.status(200).send("Upload");
     } else {
       const downloadResponse = await blockBlobClient.downloadToBuffer();
 
       console.log("file is exist");
 
-      res.setHeader("Content-Type", "image/png");
-      res.status(200).end(downloadResponse, "binary");
+      // res.setHeader("Content-Type", "image/png");
+      // res.status(200).end(downloadResponse, "binary");
+      res.status(200).send("exist");
     }
   } catch (error) {
     return res.status(500).json({ error: "Can't get content data" });
