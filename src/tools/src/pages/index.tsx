@@ -9,8 +9,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import Hero from "@/components/Hero";
-import Link from "next/link";
+import Hero from "@/Components/Hero";
 import Layout from "@/PageLayout/PageLayout";
 
 export default function Home() {
