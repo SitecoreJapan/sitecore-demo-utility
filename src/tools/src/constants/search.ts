@@ -1,0 +1,4 @@
+export const NEXT_PUBLIC_SEARCH_ENDPOINT =
+  process.env.NEXT_PUBLIC_SEARCH_ENDPOINT || "";
+export const NEXT_PUBLIC_SEARCH_SOURCE_ID =
+  process.env.NEXT_PUBLIC_SEARCH_SOURCE_ID || "";

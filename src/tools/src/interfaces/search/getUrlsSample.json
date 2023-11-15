@@ -1,0 +1,27 @@
+{
+  "context": {
+    "page": {
+      "uri": "/"
+    },
+    "locale": {
+      "country": "us",
+      "language": "en"
+    }
+  },
+  "widget": {
+    "items": [
+      {
+        "entity": "content",
+        "rfk_id": "rfkid_7",
+        "search": {
+          "content": {
+            "fields": ["url"]
+          },
+          "limit": 30,
+          "offset": 0
+        },
+        "sources": ["886101"]
+      }
+    ]
+  }
+}

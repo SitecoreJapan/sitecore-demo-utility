@@ -1,6 +1,6 @@
-// pages/index.tsx
+import axios from "axios";
 
-import Layout from "@/PageLayout/PageLayout";
+import Layout from "@/pageLayout/PageLayout";
 import {
   Box,
   Button,
@@ -10,13 +10,17 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { fetchData } from "@/util/search/fetch";
+import { NEXT_PUBLIC_SEARCH_ENDPOINT } from "@/constants/search";
 
 export default function Home() {
   const [inputText, setInputText] = useState<string>(""); // テキストボックスの値を管理するためのstate
   const [displayText, setDisplayText] = useState<string>(""); // 表示するテキストを管理するためのstate
 
-  const handleClick = () => {
-    // ボタンがクリックされたときのロジックをここに追加
+  const handleClick = async () => {
+    const result = await fetchData();
+
+    console.log(result);
     setDisplayText(`入力されたテキスト: ${inputText}`);
 
     console.log("ボタンがクリックされました！");

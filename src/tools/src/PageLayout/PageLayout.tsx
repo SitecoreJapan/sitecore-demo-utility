@@ -1,7 +1,7 @@
 // components/layout.tsx
 
-import Footer from "@/Components/footer";
-import Navbar from "@/Components/navbar";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import { Box, Flex } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 
