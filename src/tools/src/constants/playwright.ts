@@ -1,0 +1,1 @@
+export const NEXT_PUBLIC_PLAYWRIGHT = process.env.NEXT_PUBLIC_PLAYWRIGHT;

@@ -10,15 +10,14 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { fetchData } from "@/util/search/fetch";
-import { NEXT_PUBLIC_SEARCH_ENDPOINT } from "@/constants/search";
+import { getSearchTotalItem } from "@/interfaces/search";
 
 export default function Home() {
   const [inputText, setInputText] = useState<string>(""); // テキストボックスの値を管理するためのstate
   const [displayText, setDisplayText] = useState<string>(""); // 表示するテキストを管理するためのstate
 
   const handleClick = async () => {
-    const result = await fetchData();
+    const result = await getSearchTotalItem();
 
     console.log(result);
     setDisplayText(`入力されたテキスト: ${inputText}`);

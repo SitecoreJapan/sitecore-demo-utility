@@ -4,18 +4,18 @@ import {
   BlobServiceClient,
   StorageSharedKeyCredential,
 } from "@azure/storage-blob";
+import {
+  AZURE_STORAGE_ACCESS_KEY,
+  AZURE_STORAGE_ACCOUNT,
+  AZURE_STORAGE_CONTAINER,
+} from "@/constants/storage";
+import { NEXT_PUBLIC_PLAYWRIGHT } from "@/constants/playwright";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const { url } = req.query as { url: string };
-  const NEXT_PUBLIC_PLAYWRIGHT = process.env.NEXT_PUBLIC_PLAYWRIGHT;
-
-  const AZURE_STORAGE_ACCOUNT = process.env["AZURE_STORAGE_ACCOUNT"] || "";
-  const AZURE_STORAGE_ACCESS_KEY =
-    process.env["AZURE_STORAGE_ACCESS_KEY"] || "";
-  const AZURE_STORAGE_CONTAINER = process.env["AZURE_STORAGE_CONTAINER"] || "";
 
   let domain: string | null = null;
   let path: string | null = null;
