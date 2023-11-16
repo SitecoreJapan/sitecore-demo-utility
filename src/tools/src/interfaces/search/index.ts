@@ -10,7 +10,7 @@ interface Widget {
   errors: Error[];
 }
 
-interface Content {
+export interface Content {
   id: string;
   source_id: string;
   url: string;
@@ -22,25 +22,15 @@ interface Error {
   severity: string;
 }
 
-interface AllSearchResponse {
+export interface AllSearchResponse {
   widgets: Widget[];
   dt: number;
   ts: number;
 }
 
-import { fetchData } from "@/util/search";
+export const getSearchTotalItemQuery = (locale: string, id: string) => {
+  const [language, country] = locale.split("-");
 
-export const getSearchTotalItem = async (): Promise<number> => {
-  const results: AllSearchResponse = (await fetchData(
-    getSearchTotalItemQuery("892427")
-  )) as AllSearchResponse;
-
-  const totalItem: number = results.widgets[0].total_item;
-
-  return totalItem;
-};
-
-const getSearchTotalItemQuery = (id: string) => {
   return JSON.parse(`
     {
       "context": {
@@ -48,8 +38,8 @@ const getSearchTotalItemQuery = (id: string) => {
           "uri": "/"
         },
         "locale": {
-          "country": "jp",
-          "language": "ja"
+          "country": "${country}",
+          "language": "${language}"
         }
       },
       "widget": {

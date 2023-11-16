@@ -10,7 +10,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { getSearchTotalItem } from "@/interfaces/search";
+import { getSearchTotalItem } from "@/util/search";
 
 export default function Home() {
   const [inputText, setInputText] = useState<string>(""); // テキストボックスの値を管理するためのstate

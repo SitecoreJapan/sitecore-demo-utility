@@ -1,24 +1,22 @@
-// src/util/search/index.ts
-import { NEXT_PUBLIC_SEARCH_ENDPOINT } from "@/constants/search";
+import { fetchData } from "@/util/search/fetch";
+import {
+  AllSearchResponse,
+  getSearchTotalItemQuery,
+} from "@/interfaces/search";
+import {
+  NEXT_PUBLIC_SEARCH_LOCALE,
+  NEXT_PUBLIC_SEARCH_SOURCE_ID,
+} from "@/constants/search";
 
-export const fetchData = async (query: any) => {
-  const url = NEXT_PUBLIC_SEARCH_ENDPOINT;
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(query),
-    });
+export const getSearchTotalItem = async (): Promise<number> => {
+  const results: AllSearchResponse = (await fetchData(
+    getSearchTotalItemQuery(
+      NEXT_PUBLIC_SEARCH_LOCALE,
+      NEXT_PUBLIC_SEARCH_SOURCE_ID
+    )
+  )) as AllSearchResponse;
 
-    if (!response.ok) {
-      throw new Error("ネットワークエラーが発生しました");
-    }
+  const totalItem: number = results.widgets[0].total_item;
 
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    throw new Error(`フェッチ中にエラーが発生しました: ${error}`);
-  }
+  return totalItem;
 };
