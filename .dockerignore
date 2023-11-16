@@ -1,6 +1,7 @@
 .gitignore
 .vs
 Dockerfile
+.env
 
 **/dist
 **/node_modules

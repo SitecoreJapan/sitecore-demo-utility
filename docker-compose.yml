@@ -14,17 +14,22 @@ services:
       - "3000:3000"
     networks:
       - default
-  functions:
-    image: ${COMPOSE_PROJECT_NAME}-functions:${PROJECT_VERSION}
-    platform: linux/amd64
+  tools:
+    image: ${COMPOSE_PROJECT_NAME}-tools:${PROJECT_VERSION}
     build:
-      context: ./src/functions
+      context: ./src/tools
       args:
-        PARENT_IMAGE: ${FUNCTIONS_IMAGE}
+        PARENT_IMAGE: ${NODEJS_PARENT_IMAGE}
     environment:
-      AzureWebJobsStorage: ${AZURE_WEB_JOBS_STORAGE}
-      FUNCTIONS_WORKER_RUNTIME: node
+      AZURE_STORAGE_ACCOUNT: ${AZURE_STORAGE_ACCOUNT}
+      AZURE_STORAGE_ACCESS_KEY: ${AZURE_STORAGE_ACCESS_KEY}
+      AZURE_STORAGE_CONTAINER: ${AZURE_STORAGE_CONTAINER}
+      NEXT_PUBLIC_SEARCH_ENDPOINT: ${NEXT_PUBLIC_SEARCH_ENDPOINT}
+      NEXT_PUBLIC_SEARCH_SOURCE_ID: ${NEXT_PUBLIC_SEARCH_SOURCE_ID}
+      NEXT_PUBLIC_SEARCH_LOCALE: ${NEXT_PUBLIC_SEARCH_LOCALE}
+      NEXT_PUBLIC_SEARCH_BATCH_SIZE: ${NEXT_PUBLIC_SEARCH_BATCH_SIZE}
+      NEXT_PUBLIC_PLAYWRIGHT: ${NEXT_PUBLIC_PLAYWRIGHT}
     ports:
-      - "80:80"
+      - "3001:3000"
     networks:
       - default
