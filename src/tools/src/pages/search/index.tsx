@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import Layout from "@/pageLayout/PageLayout";
 import {
   Box,
@@ -10,19 +8,34 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { getSearchTotalItem } from "@/util/search";
+import { getSearchTotalItem, getSearchUrls } from "@/util/search";
+import { NEXT_PUBLIC_SEARCH_BATCH_SIZE } from "@/constants/search";
+import { NEXT_PUBLIC_PLAYWRIGHT } from "@/constants/playwright";
 
 export default function Home() {
   const [inputText, setInputText] = useState<string>(""); // テキストボックスの値を管理するためのstate
   const [displayText, setDisplayText] = useState<string>(""); // 表示するテキストを管理するためのstate
 
   const handleClick = async () => {
-    const result = await getSearchTotalItem();
+    const totalItem = await getSearchTotalItem();
+    console.log(totalItem);
 
-    console.log(result);
-    setDisplayText(`入力されたテキスト: ${inputText}`);
+    for (let i = 0; i <= totalItem / NEXT_PUBLIC_SEARCH_BATCH_SIZE; i++) {
+      console.log(i);
+      const urls = await getSearchUrls(i * NEXT_PUBLIC_SEARCH_BATCH_SIZE);
+      for (const urlItem of urls) {
+        const response = await fetch(
+          `/api/thumbnail?url=${encodeURIComponent(urlItem.url || "")}`
+        );
+        const thumbnailData = await response.json();
+        setDisplayText(`URL: ${urlItem.url}`);
+        console.log(thumbnailData);
+      }
+    }
 
-    console.log("ボタンがクリックされました！");
+    setDisplayText(`Finish`);
+
+    console.log("Completed");
   };
 
   return (

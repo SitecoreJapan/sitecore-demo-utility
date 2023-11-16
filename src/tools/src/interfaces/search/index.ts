@@ -61,3 +61,42 @@ export const getSearchTotalItemQuery = (locale: string, id: string) => {
     }
   `);
 };
+
+export const getSearchUrlsQuery = (
+  offset: number,
+  limit: number,
+  locale: string,
+  id: string
+) => {
+  const [language, country] = locale.split("-");
+
+  return JSON.parse(`
+    {
+      "context": {
+        "page": {
+          "uri": "/"
+        },
+        "locale": {
+          "country": "${country}",
+          "language": "${language}"
+        }
+      },
+      "widget": {
+        "items": [
+          {
+            "entity": "content",
+            "rfk_id": "rfkid_7",
+            "search": {
+              "content": {
+                "fields": ["url"]
+              },
+              "limit": ${limit},
+              "offset": ${offset}
+            },
+            "sources": ["${id}"]
+          }
+        ]
+      }
+    }
+  `);
+};
